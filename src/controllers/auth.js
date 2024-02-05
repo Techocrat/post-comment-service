@@ -27,9 +27,7 @@ export const register = async (req, res) => {
       viewedProfile: Math.floor(Math.random() * 10000),
       impressions: Math.floor(Math.random() * 10000),
     });
-    console.log(newUser);
     const savedUser = await newUser.save();
-    console.log(savedUser);
     res.status(201).json(savedUser);
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -39,10 +37,7 @@ export const register = async (req, res) => {
 /* LOGGING IN */
 export const login = async (req, res) => {
   try {
-    console.log(req.body)
     const { email, password } = req.body;
-    console.log(email, password);
-
     const user = await User.findOne({ email: email });
     if (!user) return res.status(400).json({ msg: "User does not exist. " });
 

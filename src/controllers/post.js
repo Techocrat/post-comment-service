@@ -73,7 +73,7 @@ export const addComment = async (req, res) => {
       // Check if user and post exist
       const user = await User.findById(userId);
       const post = await Post.findById(postId);
-  
+
       if (!user || !post) {
         return res.status(404).json({ message: "User or Post not found" });
       }
@@ -83,7 +83,7 @@ export const addComment = async (req, res) => {
         userId,
         text,
       };
-  
+
       post.comments.push(newComment);
       await post.save();
   
